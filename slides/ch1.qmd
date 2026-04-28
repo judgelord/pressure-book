@@ -41,8 +41,15 @@ d <- "pressure-book/"
 
 ## Today
 
-1. A note on rulemaking in the 2nd Trump administration 
-2. *Public Pressure in Bureaucratic Policymaking* book proposal
+A note on rulemaking in the 2nd Trump administration 
+
+::: {layout="[[1, 0.5, 2]]"}
+*Public Pressure in Bureaucratic Policymaking* book proposal
+
+OR
+
+*Interbranch Representation: How Members of Congress work with the bureaucracy*
+:::
 
 ## The public narrative 
 
@@ -166,7 +173,7 @@ DOL is down less
 
 DOJ is down 36% in final rules, down in drafts, but up in other documents
 
-ED is down 85% in rules
+ED is down 85% in rules.
 :::
 
 ## {data-menu-title="boxplots"}
@@ -224,7 +231,7 @@ How to think about "participation" in agency rulemaking
 
 . . . 
 
-**Conditional on** capacity and procedures  --- i.e., it is it someone's job inside the agency? 
+**Conditional on** capacity and procedures  --- i.e., is it someone's job inside the agency? 
 (not strategic behavior)
 
 # **Who:** Organized groups, not individuals
@@ -242,26 +249,66 @@ How to think about "participation" in agency rulemaking
 
 ## Organized groups, not individuals
 
-::: {layout="[[1, 1]]"}
-mass comments 
+Of 58 million public comments on proposed agency rules, the top 100 organizations mobilized >44 million. <!--The top ten organizations mobilized >26 million.--> 
 
-table 
-:::
+
+```{r}
+# code in the top_orgs.R
+here("dissertation", 
+     "data", 
+     "org_counts_summary.Rdata")|> 
+  str_remove(d) |> 
+  load()
+
+top10 <- org_counts_summary[1:10,]
+top100 <- org_counts_summary[1:100,]
+
+# Pretty up for presentation
+org_counts_summary %>%
+  dplyr::select(org_name, rules, campaigns, percent, comments, average) %>% 
+  mutate(comments = comments %>% prettyNum(big.mark = ","),
+         average = average %>% prettyNum(big.mark = ",")) %>% 
+  rename(Organization = org_name,
+         Comments = comments,
+         `Rules Lobbied On` = rules, 
+         `Pressure Campaigns` = campaigns,
+         `Percent (Campaigns /Rules)` = percent, 
+         `Average per Campaign` = average) %>% 
+  select(-`Percent (Campaigns /Rules)`) %>% 
+  head() %>% 
+ #mutate(Organization = Organization %>% 
+           #str_rpl("Natural Resources Defense Council", "NRDC") %>% 
+           #str_rpl("World Wildlife Fund", "WWF") %>% 
+           #str_rpl("Pew Charitable Trusts", "Pew")) %>% 
+   knitr::kable(caption = "The Top 5 Organizations Mobilized 20 Million Public Comments",
+        full_width = T, font_size = 1, align= c('l', rep('c', 5)))  %>% 
+  kableExtra::kable_paper()
+```
+
 
 ## Why this matters for scholars
 
-balla paper
+```{r}
+#| layout-ncol: 2
+here("figs", "balla.png") |>   knitr::include_graphics()
+here("figs", "bunea.png") |>   knitr::include_graphics()
+
+```
 
 ## Why this matters for advocates and officials
 
 "personalized" comments 
 
-$\rightarrow$ torrents of useless email, pretending not to be organized by groups but are less informative and likely end up in the trash 
+$\rightarrow$ torrents of email, pretending not to be organized by groups, are less informative and likely end up in the trash 
 
-$\rightarrow$ increase costs of participation in petitioning
+$\rightarrow$ increase costs of petitioning
+
+"high quality" comments
+
+$\rightarrow$ Resources and reforms focus on educating individuals, not supporting groups
 
 
-# **What:** Technical and legal information
+# **Mechanisms:** Technical and legal information
 
 ## Technical and legal information
 
@@ -304,22 +351,81 @@ knitr::include_graphics()
 
 
 
+# **Mechanism:** Political information 
 
-# **What:** Political information 
+- Coalition Size
+- Members of Congress in Coalition
 
-Mass commenting campaigns is petitioning, which demonstrates quantitative relevance and mobilizes allies.
+<!--
+- Mass commenting campaigns are petitioning, which demonstrates quantitative relevance and mobilizes allies.--> 
 
 ## Coalition size
 
-# **What:** Issue framing
-
-## Issue framing affects policy
-
-### When agencies adopt EJ language, environmental groups do better
 
 :::: {.columns}  
 
-::: {.column width="20%"}
+::: {.column width="65%"}
+```{r,  out.width = "100%"}
+here("ej", 
+     "docs",
+     "figs", 
+     "ej-m-PR-ejcomments-agencyFE-pres-1.png") |> 
+  str_remove(d) |> 
+  knitr::include_graphics()
+```
+
+:::
+
+::: {.column width="30%"}
+
+
+Logit (N = 11,315 rules)
+
+:::
+
+::::
+
+
+
+
+# **Mechanism:** Issue framing
+
+##
+
+When agencies adopt EJ language, environmental coalitions do better. 
+
+
+:::: {.columns}  
+
+::: {.column width="30%"}
+
+
+Cross-sectional OLS model of coalition-level lobbying success (N = 284)
+
+:::
+
+::: {.column width="70%"}
+```{r, out.width = "100%"}
+here("ej", 
+     "docs",
+     "figs", 
+     "mc1ej-obama.png") |> 
+  str_remove(d) |> 
+  knitr::include_graphics()
+```
+:::
+
+::::
+
+
+
+## 
+
+When agencies adopt Environmental Justice language, environmental groups do better.
+
+:::: {.columns}  
+
+::: {.column width="25%"}
 
 
 Within-organization (DiD) OLS model 
@@ -328,7 +434,7 @@ Within-organization (DiD) OLS model
 
 :::
 
-::: {.column width="80%"}
+::: {.column width="75%"}
 
 ```{r, out.width = "100%"}
 
@@ -344,7 +450,131 @@ knitr::include_graphics()
 
 ::::
 
+
+
+# **Conditional on**: capacity and procedures
+
+## 
+
+:::: {.columns}  
+
+
+::: {.column width="30%"}
+
+Agencies that more often address EJ are more responsive to comments demanding attention to EJ.
+
+
+Logit (N = 11,315 rules)
+
+:::
+ 
+::: {.column width="70%"}
+
+```{r, fig.cap = "", out.width = "100%", fig.show = "hold", fig.subcap=""}
+
+here("ej", 
+     "docs",
+     "figs", 
+     "ej-m-PR-shareI-pres-1.png") |> 
+  str_remove(d) |> 
+  knitr::include_graphics()
+
+```
+
+:::
+
+::::
+
+
+
+## **Responsiveness** to comments
+
+```{r}
+#| label: fig-ej-m-PR-pres
+#| fig-cap: "Responsiveness to Pressure Address Environmental Justice where the Proposed Rule Did Not Address Environmental Justice"
+#| out-width: 100%
+
+here("ej", 
+     "docs",
+     "figs", 
+     "ej-m-PR-president-median-pres-2.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+
+## Implications: 
+
+Design processes for group participation. 
+
+- give policymakers information on groups
+
+If you want people to be heard,
+
+- connect those people with groups
+- connect those groups and/or give those groups resources
+
+If you want agencies to be responsive
+
+- make it someone's job
+
+Organization is the mobilization of bias. You cannot design institutions to be responsive *in general* to all things. They are responsive to the things they are tasked with doing.  
+
+
+# Extra
+
+##  Racialized Language  {#terms}
+
+```{r}
+here::here("data", "rules_terms.rda") |>
+  stringr::str_replace("pressure-book", "racialization") |> 
+  load()
+```
+
+
+> `r terms |> paste0(collapse = "; ")`
+
+
+
+
+
+## Larger coalitions  $\rightsquigarrow$  more likely to win 
+
+
+
+ 
+```{r m-influence, out.width = "35%"}
+here("dissertation", 
+     "docs",
+     "present",
+     "figs",
+     "m-influence.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+Coalition-level OLS model
+
+
+## Pressure may mobilize legislators 
+
+
+```{r m-congress, out.width = "80%"}
+here("dissertation", 
+     "docs",
+     "present",
+     "figs",
+     "m-congress.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+Coalition-level Poisson model
+
+
 ---
+
+
 
 ## Which environmental groups? 
 
@@ -357,6 +587,7 @@ here("ej",
 knitr::include_graphics()
 ```
 
+## Win rates
 
 
 ```{r eval=FALSE, include=FALSE}
@@ -387,81 +618,6 @@ dplyr::arrange(`Organization Type`) |>
 ```
 
 
-# **How**: Responsiveness is about capacity and procedures
-
-###  Little variation in **responsiveness** to comments
-
-```{r}
-#| label: fig-ej-m-PR-pres
-#| fig-cap: "Responsiveness to Pressure Address Environmental Justice where the Proposed Rule Did Not Address Environmental Justice"
-#| out-width: 100%
-
-here("ej", 
-     "docs",
-     "figs", 
-     "ej-m-PR-president-median-pres-2.png") |> 
-  str_remove(d) |> 
-knitr::include_graphics()
-```
-
-
-## Implications: 
-
-Design processes for group participation. 
-
-- give policymakers information on groups
-
-If you want people to be heard,
-
-- connect those people with groups
-- connect those groups with each other and/or give those groups resources
-
-If you want agencies to be responsive
-
-- make it someone's job
-
-Organization is the mobilization of bias. You cannot design institutions to be responsive *in general* to all things. They are responsive to the things they are tasked with doing.  
-
-
-# Extra
-
-##  Racialized Language  {#terms}
-
-```{r}
-here::here("data", "rules_terms.rda") |>
-  stringr::str_replace("pressure-book", "racialization") |> 
-  load()
-```
-
-
-> `r terms |> paste0(collapse = "; ")`
-
-
-## 
-
-
-:::: {.columns}  
-
-::: {.column width="30%"}
-
-### When agencies adopt EJ language, environmental coalitions do better 
-
-Cross-sectional OLS model of coalition-level lobbying success (N = 284)
-
-:::
-
-::: {.column width="70%"}
-```{r, out.width = "100%"}
-here("ej", 
-     "docs",
-     "figs", 
-     "mc1ej-obama.png") |> 
-  str_remove(d) |> 
-knitr::include_graphics()
-```
-:::
-
-::::
 
 
 ## Agency rulemaking tilts toward the rich
