@@ -1,0 +1,480 @@
+---
+title: "Politics in Federal Agency Policymaking"
+date: today
+title-slide-attributes:
+    data-background-image: ""
+    data-background-size: cover
+    data-background-opacity: "0.5"
+format:
+ revealjs:
+   footer: ''
+   incremental: false   
+   smaller: false
+   scrollable: true
+   theme: [../michigan.scss]
+css: styles.css
+execute:
+  echo: false
+  engine: knitr
+embed-resources: true
+---
+
+
+```{r knit-options}
+library(scales) # for percents
+library(here)
+library(tidyverse)
+
+# inline numbers round to 2, comma at thousands
+knitr::knit_hooks$set(inline = function(x) {
+  if (is.na(as.numeric(x))) {
+    return (x)
+    } else
+        return (as.numeric(x) |> 
+                 round(2) |>
+                 format(big.mark=",") 
+        )
+})
+
+d <- "pressure-book/"
+```
+
+## Today
+
+1. A note on rulemaking in the 2nd Trump administration 
+2. *Public Pressure in Bureaucratic Policymaking* book proposal
+
+## The public narrative 
+
+::: {layout="[[1, 1]]"}
+![](../figs/NYT_Words_Disappear.jpg "Banned Words")
+
+![](../figs/nyt-eo-100.png "Executive orders by president")
+:::
+
+## NYT articles about agencies using [racialized terms](#terms)
+
+::: {layout="[[1, 1]]"}
+![](../../racialization/docs/figs/trends-nyt-total-1.png)
+
+
+![](../../racialization/docs/figs/trends-nyt-total-2.png)
+:::
+
+## {data-menu-title="Race in Policy Documents"}
+
+![](../../racialization/docs/figs/trends-rule-docs-2.png)
+
+
+## {data-menu-title="Civil Rights"}
+
+![](../../racialization/docs/figs/trends-rule-docs-civil-rights-2.png)
+
+<!---
+## {data-menu-title="DEI"}
+
+
+![](../../racialization/docs/figs/trends-rules-civil-rights-2.png)
+--> 
+
+## {data-menu-title="African Americans"}
+
+![](../../racialization/docs/figs/trends-rule-docs-groups-5.png)
+
+## {data-menu-title="Alaska Native"}
+
+![](../../racialization/docs/figs/trends-rule-docs-groups-11.png)
+
+## {data-menu-title="Accessiblity"}
+
+![](../../racialization/docs/figs/trends-rule-docs-all-term-3.png)
+
+## {data-menu-title="Climate Change"}
+
+![](../../racialization/docs/figs/trends-rule-docs-all-term-92.png)
+
+## {data-menu-title="Climate Change"}
+
+![](../../racialization/docs/figs/trends-rule-docs-all-term-172.png)
+
+## {data-menu-title="Evidence-based"}
+
+![](../../racialization/docs/figs/trends-rule-docs-all-term-191.png)
+
+
+## {data-menu-title="Rules"}
+
+58% fewer rules, 56% fewer other documents vs 2017
+
+::: {layout="[[1.6, 1]]"}
+
+![](../../racialization/docs/figs/rulemaking-2.png)
+
+
+- Capacity hit (e.g., DOGE)?
+- Litigation risk of writing things down? 
+- Unitary executive principled rejection of process? 
+- Keeping heads down?
+
+:::
+
+##  {data-menu-title="by agency"}
+
+58% fewer rules, 56% fewer other documents vs 2017
+
+::: {layout="[[1.6, 1]]"}
+
+![](../../racialization/docs/figs/rulemaking-7.png)
+
+
+- Capacity hit (e.g., DOGE)?
+- Litigation risk of writing things down? 
+- Unitary executive principled rejection of process? 
+- Keeping heads down?
+
+:::
+
+
+<!--
+|.        | Rules | Other Documents |
+|:--------|:------------|:-----------|
+|DOI      |-2%          |-18%        |
+|DHS      |-20%         |-36%        |
+|DOE      |-39%         |-70%        |
+|HHS      |-39%         |+32%         |
+|DOT      |-69%         |-35%        |
+|DOC      |-75%         |-64%        |
+|USDA     |-75%         |-69%        |
+|FCC      |-76%         |-74%        |
+|EPA      |-78%         |-56%        |
+|Treasury |-80%         |-40%        |
+|DOD      |-81%         |-55%        |
+--> 
+
+::: {.notes}
+BLM is up 300%-500% in final rules
+
+DOE up 150% in final rules 
+
+CFTC, DOD, HUD, SEC, FEC down to 0 
+
+EPA is down 81% in rules, 58% in other documents 
+
+DHS is down 42% IN RULES 57% IN OTHER DOCUMENTS 
+
+DOL is down less 
+
+DOJ is down 36% in final rules, down in drafts, but up in other documents
+
+ED is down 85% in rules
+:::
+
+## {data-menu-title="boxplots"}
+
+::: {layout="[[1, 1,1,1]]"}
+
+
+
+![❌ Targeted by DOGE](../../racialization/docs/figs/rulemaking-change-doge-1.png)
+
+
+
+![❌Percieved Agency Ideology](../../racialization/docs/figs/rulemaking-change-box-2025-2.png)
+
+![❌Percieved Agency Centrism](../../racialization/docs/figs/rulemaking-change-box-2025-3.png)
+
+![✔️More attention in Project 2025](../../racialization/docs/figs/rulemaking-change-box-2025-7.png)
+
+<!--
+![❌Racialized in NYT](../../racialization/docs/figs/rulemaking-change-box-2025-4.png)
+
+
+![? Racialized in Project 2025](../../racialization/docs/figs/rulemaking-change-box-2025-5.png)
+
+![? Historically Racialized in Rules](../../racialization/docs/figs/rulemaking-change-box-2025-1.png)
+--> 
+
+
+:::
+
+## Democracy beyond voting
+
+1. *Public Pressure in Bureaucratic Policymaking* 
+2. *Interbranch Representation: How congressional offices represent constituencies to the bureaucracy*
+
+
+## Public pressure in policymaking for realists
+
+How to think about "participation" in agency rulemaking
+
+. . . 
+
+**Who:** Organized groups, not individuals
+
+. . . 
+
+**Mechanisms:** Technical & legal information, but also
+
+- political information 
+- issue framing
+
+. . . 
+
+**Effects** on policy (1) *language* & (2) *substance*
+
+. . . 
+
+**Conditional on** capacity and procedures  --- i.e., it is it someone's job inside the agency? 
+(not strategic behavior)
+
+# **Who:** Organized groups, not individuals
+
+## Where we go wrong 
+
+::: {layout="[[1, 1]]"}
+
+![Freedom of Speech by Norman Rockwell](https://rockwellfourfreedoms.org/wp-content/uploads/2018/03/FreedomofSpeech-sm-2.jpg "Freedom of Speech by Norman Rockwell")
+
+- methodological individualism (not independent units of analysis)
+- projecting a small democracy ideal (deliberation) onto large democracy politics
+
+:::
+
+## Organized groups, not individuals
+
+::: {layout="[[1, 1]]"}
+mass comments 
+
+table 
+:::
+
+## Why this matters for scholars
+
+balla paper
+
+## Why this matters for advocates and officials
+
+"personalized" comments 
+
+$\rightarrow$ torrents of useless email, pretending not to be organized by groups but are less informative and likely end up in the trash 
+
+$\rightarrow$ increase costs of participation in petitioning
+
+
+# **What:** Technical and legal information
+
+## Technical and legal information
+
+```{r}
+here("FINREGRULEMAKE2", 
+     "finreg", 
+     "figs", 
+     "boxplot-efficacyXsophistication-2.png") |> 
+  str_remove(d) |> 
+  knitr::include_graphics()
+```
+
+
+## Agency rulemaking tilts toward the rich
+
+```{r}
+here("FINREGRULEMAKE2", 
+     "finreg", 
+     "figs", 
+     "assets-efficacy-6.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+
+## Why? 
+
+### $\rightarrow$ Big companies hire experts and lawyers
+
+```{r, out.width= "100%"}
+here("FINREGRULEMAKE2", 
+     "finreg", 
+     "figs", 
+     #"mediation-4way-acme-1.png"
+     "mediation-4wayNo0-acme-1.png"
+     ) |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+
+
+
+# **What:** Political information 
+
+Mass commenting campaigns is petitioning, which demonstrates quantitative relevance and mobilizes allies.
+
+## Coalition size
+
+# **What:** Issue framing
+
+## Issue framing affects policy
+
+### When agencies adopt EJ language, environmental groups do better
+
+:::: {.columns}  
+
+::: {.column width="20%"}
+
+
+Within-organization (DiD) OLS model 
+
+(N = 3,932 organizations)
+
+:::
+
+::: {.column width="80%"}
+
+```{r, out.width = "100%"}
+
+here("ej", 
+     "docs",
+     "figs", 
+     "mo1ej-obama.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+
+```
+:::
+
+::::
+
+---
+
+## Which environmental groups? 
+
+```{r substantive, out.width = "85%", fig.show = "hold"}
+here("ej", 
+     "docs",
+     "figs", 
+     "ej-success-table.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+
+
+```{r eval=FALSE, include=FALSE}
+#| label: "tbl-ej-winrates"
+#| tbl-cap: "Hand-coded Lobbying Success by Type of Organization, 2005-2024"
+
+here("ej", 
+     "data",
+     "winrate.Rdata") |> 
+  str_remove(d) |> 
+  load()
+     
+winrates |> 
+  dplyr::mutate(`EJ Success Rate` = `EJ Success Rate` |>
+           scales::percent(accuracy = 1) |>
+             tidyr::replace_na("-"),
+         `Overall Success Rate` = `Overall Success Rate` |>
+           scales::percent(accuracy = 1)) |> 
+  dplyr::select(-`N raising EJ`) |>
+  # name to nest
+  dplyr::mutate(`Organization Type` = `Organization Type` |> 
+           stringr::str_replace("(State|Tribe|City)", "Government, \\1") |> 
+           stringr::str_replace("(Religious|Pressure Group|Professional Assn.|University|Environmental Group|Credit Union|Union|Frontline EJ)", "NGO, \\1") |> 
+           stringr::str_replace("(Finance|Law Firm)", "Business, \\1") |> 
+           stringr::str_replace("(NGO$|Business$)", "\\1 (Overall)")) |> 
+dplyr::arrange(`Organization Type`) |> 
+  knitr::kable()
+```
+
+
+# **How**: Responsiveness is about capacity and procedures
+
+###  Little variation in **responsiveness** to comments
+
+```{r}
+#| label: fig-ej-m-PR-pres
+#| fig-cap: "Responsiveness to Pressure Address Environmental Justice where the Proposed Rule Did Not Address Environmental Justice"
+#| out-width: 100%
+
+here("ej", 
+     "docs",
+     "figs", 
+     "ej-m-PR-president-median-pres-2.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+
+
+## Implications: 
+
+Design processes for group participation. 
+
+- give policymakers information on groups
+
+If you want people to be heard,
+
+- connect those people with groups
+- connect those groups with each other and/or give those groups resources
+
+If you want agencies to be responsive
+
+- make it someone's job
+
+Organization is the mobilization of bias. You cannot design institutions to be responsive *in general* to all things. They are responsive to the things they are tasked with doing.  
+
+
+# Extra
+
+##  Racialized Language  {#terms}
+
+```{r}
+here::here("data", "rules_terms.rda") |>
+  stringr::str_replace("pressure-book", "racialization") |> 
+  load()
+```
+
+
+> `r terms |> paste0(collapse = "; ")`
+
+
+## 
+
+
+:::: {.columns}  
+
+::: {.column width="30%"}
+
+### When agencies adopt EJ language, environmental coalitions do better 
+
+Cross-sectional OLS model of coalition-level lobbying success (N = 284)
+
+:::
+
+::: {.column width="70%"}
+```{r, out.width = "100%"}
+here("ej", 
+     "docs",
+     "figs", 
+     "mc1ej-obama.png") |> 
+  str_remove(d) |> 
+knitr::include_graphics()
+```
+:::
+
+::::
+
+
+## Agency rulemaking tilts toward the rich
+
+```{r}
+here("FINREGRULEMAKE2", 
+     "finreg", 
+     "figs", 
+     "compustat-density-1.png") |> 
+  str_remove(d) |> 
+  knitr::include_graphics()
+```
+
+
+## LLMs
+
